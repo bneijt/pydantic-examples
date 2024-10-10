@@ -5,9 +5,7 @@ from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from typing import Type, Any
 
-from importlib.metadata import version
-
-__version__ = version(__package__)
+__version__ = "0.0.1"
 
 
 def describe(obj: Any) -> str:
