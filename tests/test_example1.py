@@ -1,22 +1,33 @@
+from typing import Annotated
 
 from pydantic import BaseModel, Field
+
 from pydantic_examples import yaml_with_comments
-from typing import Annotated
+
 
 class Nested(BaseModel):
     """Nested documentation is also documentation"""
+
     value: Annotated[int, Field(description="nested_interger value")] = 0
+
 
 class Banana(BaseModel):
     """Documentation on the base model"""
+
     field_a: Annotated[str, Field(description="field_a description")] = ""
     field_b: int = 0
     field_c: float = 1.0
     field_d: bool = True
     field_e: Annotated[list[str], Field(description="list field")] = []
     field_f: dict = {}
-    field_g: Annotated[dict[str, Nested], Field(description="nested field")] = {"a": Nested()}
-    field_h: Annotated[list[Nested], Field(description="list of nested")] = [Nested(), Nested()]
+    field_g: Annotated[dict[str, Nested], Field(description="nested field")] = {
+        "a": Nested()
+    }
+    field_h: Annotated[list[Nested], Field(description="list of nested")] = [
+        Nested(),
+        Nested(),
+    ]
+
 
 EXPECTED = """# Documentation on the base model
 field_a: ''  # field_a description
@@ -34,6 +45,7 @@ field_h: # list of nested
 - value: 0  # nested_interger value
 - value: 0
 """
+
 
 def test_example1() -> None:
     bended = Banana()
