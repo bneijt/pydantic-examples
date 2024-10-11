@@ -6,8 +6,6 @@ from pydantic.fields import FieldInfo
 from ruamel.yaml import YAML
 from ruamel.yaml.comments import CommentedMap
 
-__version__ = "0.0.1"
-
 
 def describe(obj: Any) -> str:
     if isinstance(obj, FieldInfo):
