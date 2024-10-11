@@ -8,6 +8,9 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+
     steps:
       - uses: actions/checkout@v3
       - uses: google/osv-scanner/actions/scanner@main
@@ -29,3 +32,6 @@ jobs:
       - run: |
           uvx hatch version "${{ github.event.release.tag_name }}"
           uv build
+        
+  with:
+    repository-url: https://test.pypi.org/legacy/
