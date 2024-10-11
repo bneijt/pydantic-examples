@@ -1,9 +1,10 @@
 from io import StringIO
-from ruamel.yaml import YAML
-from ruamel.yaml.comments import CommentedMap
+from typing import Any, Type
+
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
-from typing import Type, Any
+from ruamel.yaml import YAML
+from ruamel.yaml.comments import CommentedMap
 
 __version__ = "0.0.1"
 
