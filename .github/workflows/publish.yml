@@ -7,6 +7,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -15,11 +18,8 @@ jobs:
       - uses: astral-sh/setup-uv@v3
         with:
           version: "0.4.20"
-      - name: Build and publish
-        env:
-          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      - name: Build
         run: |
           uvx hatch version "${{ github.event.release.tag_name }}"
           uv build
-          twine upload dist/*
+      - uses: pypa/gh-action-pypi-publish@release/v1        
