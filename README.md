@@ -4,6 +4,10 @@ Project to create example data from [Pydantic](https://docs.pydantic.dev/latest/
 
 From a model like:
 ```python
+from pydantic import BaseModel, Field
+from pydantic_examples import yaml_with_comments
+from typing import Annotated
+
 class Example(BaseModel):
         """Example model"""
 
