@@ -8,7 +8,7 @@ Uniq = AfterValidator(lambda v: list(sorted(set(v))))
 
 
 class SecondLevel(BaseModel, extra="forbid"):
-    """Nested documentation is also documentation"""
+    """Second level here"""
 
     value: Annotated[int, Field(description="actual value")] = 0
 
