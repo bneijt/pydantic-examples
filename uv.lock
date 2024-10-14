@@ -177,7 +177,7 @@ wheels = [
 
 [[package]]
 name = "pydantic-examples"
-version = "0.1.0"
+version = "0.1.1.dev0+g736e501.d20241014"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
@@ -191,8 +191,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "pydantic", specifier = ">=2.9.2" },
-    { name = "ruamel-yaml", specifier = ">=0.18.6" },
+    { name = "pydantic", specifier = ">=2.3.0" },
+    { name = "ruamel-yaml", specifier = ">=0.18.0" },
 ]
 
 [package.metadata.requires-dev]
