@@ -16,7 +16,7 @@ def as_yaml_comment(value: str) -> str:
         return "\n".join(
             [
                 ("# " + line).strip()
-                for line in dedent(value.strip("\n\n").rstrip()).split("\n")
+                for line in dedent(value.lstrip("\n").rstrip()).split("\n")
             ]
         )
     return ""
