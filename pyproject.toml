@@ -4,7 +4,7 @@ description = "Generate examples of serialized data from Pydantic models"
 authors = [{ name = "Bram Neijt", email = "bram@neijt.nl" }]
 readme = "README.md"
 license = "Apache-2.0"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = ["ruamel-yaml>=0.18.0", "pydantic>=2.3.0"]
 dynamic = ["version"]
 classifiers = [
@@ -29,4 +29,16 @@ source = "vcs"
 version-file = "src/pydantic_examples/_version.py"
 
 [tool.ruff.lint]
-extend-select = ["I", "INP", "FA", "ANN"]
+extend-select = [
+    "I",
+    "Q",
+    "INP",
+    "FA",
+    "ANN",
+    "E",
+    "UP",
+    "B",
+    "SIM",
+    "N",
+    "RUF",
+]
