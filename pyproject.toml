@@ -1,6 +1,6 @@
 [project]
 name = "pydantic-examples"
-description = "Generate examples of serialized data from Pydantic models"
+description = "Generate commented examples of serialized data from Pydantic models"
 authors = [{ name = "Bram Neijt", email = "bram@neijt.nl" }]
 readme = "README.md"
 license = "Apache-2.0"
@@ -10,6 +10,8 @@ dynamic = ["version"]
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Documentation",
 ]
 
 [project.urls]
@@ -30,15 +32,15 @@ version-file = "src/pydantic_examples/_version.py"
 
 [tool.ruff.lint]
 extend-select = [
-    "I",
-    "Q",
-    "INP",
-    "FA",
     "ANN",
-    "E",
-    "UP",
     "B",
-    "SIM",
+    "E",
+    "FA",
+    "I",
+    "INP",
     "N",
+    "Q",
     "RUF",
+    "SIM",
+    "UP",
 ]
