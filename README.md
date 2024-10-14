@@ -24,6 +24,6 @@ value: foo  # Does not really matter
 
 Status
 ======
-This project was created with a single use-case in mind (yaml from Pydantic) but is open to PRs and collaboration on Github.
+This project was created with a single use-case in mind (YAML from Pydantic) but is open to PRs and collaboration on Github.
 
 Feel free to file issues, raise PRs and join in if you want.
