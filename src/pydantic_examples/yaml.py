@@ -32,11 +32,12 @@ def describe_onto(model_doc: CommentedMap, model: BaseModel):
             if hasattr(model, field_name):
                 model_field = getattr(model, field_name)
                 if model_field:
-                    if type(model_field) is dict:
+                    if isinstance(model_field, BaseModel):
+                        describe_onto(model_doc[field_name], model_field)
+                    elif type(model_field) is dict:
                         key, value = next(iter(model_field.items()))
                         if isinstance(value, BaseModel):
                             describe_onto(model_doc[field_name][key], value)
-                            pass
                     elif type(model_field) is list:
                         value = model_field[0]
                         if isinstance(value, BaseModel):

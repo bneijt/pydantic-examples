@@ -16,22 +16,31 @@ class SecondLevel(BaseModel, extra="forbid"):
 class FirstLevel(BaseModel, extra="forbid"):
     """Nested documentation is also documentation"""
 
-    fst: SecondLevel = SecondLevel()
+    fst: Annotated[SecondLevel, Field(description="fst level")] = SecondLevel()
 
 
 class RootModel(BaseModel):
     """Root docstring"""
 
-    fst: FirstLevel = FirstLevel()
-    fst_list: list[FirstLevel] = [FirstLevel()]
-    fst_dict: dict[str, FirstLevel] = {"a": FirstLevel()}
+    root_fst: FirstLevel = FirstLevel()
+    root_fst_list: list[FirstLevel] = [FirstLevel()]
+    root_fst_dict: dict[str, FirstLevel] = {"a": FirstLevel()}
 
 
 EXPECTED = """# Root docstring
-fst:
-    fst:
+root_fst:
 # Nested documentation is also documentation
-        value: 0 # actual value
+  fst:  # fst level
+    value: 0  # actual value
+root_fst_list:
+# Nested documentation is also documentation
+- fst:  # fst level
+    value: 0  # actual value
+root_fst_dict:
+  a:
+# Nested documentation is also documentation
+    fst:  # fst level
+      value: 0  # actual value
 """
 
 
