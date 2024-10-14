@@ -2,7 +2,7 @@ from typing import Annotated
 
 from pydantic import BaseModel, Field
 
-from pydantic_examples import yaml_with_comments
+from pydantic_examples.yaml import yaml_with_comments
 
 
 def test_should_include_docstring() -> None:
