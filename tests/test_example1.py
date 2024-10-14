@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Annotated
 
 from pydantic import BaseModel, Field
@@ -21,7 +23,7 @@ class Banana(BaseModel):
     field_e: Annotated[list[str], Field(description="list field")] = []
     field_f: dict = {}
     field_g: Annotated[dict[str, Nested], Field(description="nested field")] = {
-        "a": Nested()
+        "a": Nested(),
     }
     field_h: Annotated[list[Nested], Field(description="list of nested")] = [
         Nested(),

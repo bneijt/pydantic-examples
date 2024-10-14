@@ -7,14 +7,14 @@ from pydantic_examples.yaml import yaml_with_comments
 
 def test_should_include_docstring() -> None:
     class Example(BaseModel):
-        """Example model"""
+        """Example model."""
 
         value: Annotated[str, Field(description="Does not really matter")] = "foo"
 
     a = yaml_with_comments(Example())
     assert (
         a
-        == """# Example model
+        == """# Example model.
 value: foo  # Does not really matter
 """
     )

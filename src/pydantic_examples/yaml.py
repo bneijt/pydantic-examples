@@ -1,7 +1,8 @@
 """Generate commented YAML files from Pydantic models"""
 
+from __future__ import annotations
+
 from io import StringIO
-from typing import Any
 
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
@@ -9,7 +10,7 @@ from ruamel.yaml import YAML
 from ruamel.yaml.comments import CommentedMap
 
 
-def describe(obj: Any) -> str:
+def describe(obj: BaseModel | FieldInfo) -> str:
     if isinstance(obj, FieldInfo):
         return obj.description or ""
     if hasattr(obj, "__doc__") and obj.__doc__:
@@ -17,7 +18,7 @@ def describe(obj: Any) -> str:
     return ""
 
 
-def describe_onto(model_doc: CommentedMap, model: BaseModel):
+def describe_onto(model_doc: CommentedMap, model: BaseModel) -> None:
     """Describe all fields of the CommentedMap using the model for metadata"""
     model_description = describe(model)
     if model_description:

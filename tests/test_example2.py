@@ -1,10 +1,12 @@
+from __future__ import annotations
+
 from typing import Annotated
 
 from pydantic import AfterValidator, BaseModel, Field
 
 from pydantic_examples.yaml import yaml_with_comments
 
-Uniq = AfterValidator(lambda v: list(sorted(set(v))))
+Uniq = AfterValidator(lambda v: sorted(set(v)))
 
 
 class SecondLevel(BaseModel, extra="forbid"):
