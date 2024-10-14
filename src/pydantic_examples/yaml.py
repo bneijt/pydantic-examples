@@ -3,11 +3,23 @@
 from __future__ import annotations
 
 from io import StringIO
+from textwrap import dedent
 
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from ruamel.yaml import YAML
 from ruamel.yaml.comments import CommentedMap
+
+
+def as_yaml_comment(value: str) -> str:
+    if value:
+        return "\n".join(
+            [
+                ("# " + line).strip()
+                for line in dedent(value.strip("\n\n").rstrip()).split("\n")
+            ]
+        )
+    return ""
 
 
 def describe(obj: BaseModel | FieldInfo) -> str:
@@ -22,12 +34,14 @@ def describe_onto(model_doc: CommentedMap, model: BaseModel) -> None:
     """Describe all fields of the CommentedMap using the model for metadata"""
     model_description = describe(model)
     if model_description:
-        model_doc.yaml_set_start_comment(model_description)
+        model_doc.yaml_set_start_comment(as_yaml_comment(model_description))
     for field_name, field_info in model.model_fields.items():
         if field_name in model_doc:
             field_description = describe(field_info)
             if field_description:
-                model_doc.yaml_add_eol_comment(field_description, key=field_name)
+                model_doc.yaml_add_eol_comment(
+                    as_yaml_comment(field_description), key=field_name
+                )
 
             # Recurse into list/dict types
             if hasattr(model, field_name):
